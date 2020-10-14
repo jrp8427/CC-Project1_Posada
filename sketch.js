@@ -2,27 +2,29 @@ let drops = [];
 
 function setup() {
   createCanvas(600, 600);
-  background (30);
-  frameRate (8);
 }
 
 function draw() {
-  for (var i=0; i<30; i++){
+  background (30);
+  for (let i=0; i<60; i++){
     drops.push(new rain());
-	drops[i].display();
-	drops[i].update();
+  drops[i].display();
+  drops[i].fall();
+    if(drops[i].y > height){
+      drops.splice(i,1);
+    }
   }
 }
 
 function rain () {
   this.x = random (width);
   this.y = 10;
-  this.size = random (0, 40);
-  this.speed = 10;
+  this.radius = random (5, 50);
+  this.speed = this.radius*0.1;
   this.display = function () {
     noStroke();
-    fill (165, 190, 270, size*3);
-    ellipse (x, y, size*0.7, size);
+    fill (165, 190, 270, this.radius*3);
+    ellipse (this.x, this.y, this.radius*0.7, this.radius);
   }
   this.fall = function () {
     this.y += this.speed;
