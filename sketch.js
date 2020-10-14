@@ -1,14 +1,30 @@
+let drops = [];
+
 function setup() {
-	createCanvas (600, 600);
-	background (0, 0, 0);
+  createCanvas(600, 600);
+  background (30);
+  frameRate (8);
 }
 
 function draw() {
-	let x = random (width);
-	let y = 0;
-	let speed = 2;
-	noStroke();
-	fill (255, 255, 255);
-	ellipse (x, y, 5);
-	this.y = y + speed;
+  for (var i=0; i<30; i++){
+    drops.push(new rain());
+	drops[i].display();
+	drops[i].update();
+  }
+}
+
+function rain () {
+  this.x = random (width);
+  this.y = 10;
+  this.size = random (0, 40);
+  this.speed = 10;
+  this.display = function () {
+    noStroke();
+    fill (165, 190, 270, size*3);
+    ellipse (x, y, size*0.7, size);
+  }
+  this.fall = function () {
+    this.y += this.speed;
+  }
 }
