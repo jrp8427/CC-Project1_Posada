@@ -1,32 +1,53 @@
 let drops = [];
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(900, 900);
+  for (let i=0; i<150; i++){
+    drops[i] = new Rain();
+  }
 }
 
 function draw() {
-  background (30);
-  for (let i=0; i<60; i++){
-    drops.push(new rain());
-  drops[i].display();
-  drops[i].fall();
-    if(drops[i].y > height){
-      drops.splice(i,1);
+  let opac = 80;
+  let x = 0; 
+  let y = height;
+  background (10);
+  for (let i=0; i<150; i++){
+    drops[i].display(); 
+    drops[i].fall(); 
+    if (drops[i].y > height){
+      drops[i] = new Rain();
     }
+  }
+  for (y = height; y >= 20; y -= 5) { //green fading field
+    fill (51, 81, 60, opac);
+    noStroke();
+    rect (x, y, width, 10);
+    opac -= 1;
   }
 }
 
-function rain () {
-  this.x = random (width);
-  this.y = 10;
-  this.radius = random (5, 50);
-  this.speed = this.radius*0.1;
-  this.display = function () {
-    noStroke();
-    fill (165, 190, 270, this.radius*3);
-    ellipse (this.x, this.y, this.radius*0.7, this.radius);
+class Rain {
+  constructor () {
+    this.x = random (width);
+    this.y = random (-500, 0);
+    this.r = random (1, 40);
+    this.speed = this.r*0.05;
   }
-  this.fall = function () {
+  display() {
+    if (this.y > 700+(this.r*4)) {
+      noFill();
+      strokeWeight(1);
+      stroke (155, 180, 255, this.r*2);
+      ellipse (this.x, 700+(this.r*4), this.r*0.8, this.r*0.25);
+      //this.r+=2;
+  } else {
+      noStroke();
+      fill (155, 180, 255, this.r*3.5);
+      ellipse (this.x, this.y, this.r*0.08, this.r);
+  }
+}
+  fall() {
     this.y += this.speed;
   }
 }
