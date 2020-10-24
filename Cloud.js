@@ -1,9 +1,9 @@
 class Cloud {
 	constructor () {
 		this.x = random (-300, 700);
-		this.y = random (-75, 350);
-		this.s = this.y * .25;
-		this.move = this.s * 0.02;
+		this.y = random (50, 350);
+		this.s = this.y * 0.25;
+		this.move = this.s * 0.015;
 		this.change = random (.1, .3);
 	}
 
@@ -25,8 +25,8 @@ class Cloud {
 
 	reset() {
 		if (this.x > width + 75) {
-			this.x = random (-75, 0);
-			this.y = random (-75, 700);
+			this.x = random (-100, 0);
+			this.y = random (50, 350);
 			this.s = this.y * 0.25;
 			this.move = this.s * 0.02;
 			this.change = random (.1, .3);
