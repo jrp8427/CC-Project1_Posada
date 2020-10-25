@@ -7,7 +7,7 @@ class Star {
   }
 
   display () {
-    strokeWeight(1.5);
+    strokeWeight(2);
     stroke (this.starFill);
     point(this.xLoc, this.yLoc);
   }
