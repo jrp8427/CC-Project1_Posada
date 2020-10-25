@@ -1,7 +1,7 @@
 class Cloud {
 	constructor () {
 		this.x = random (-300, 700);
-		this.y = random (50, 350);
+		this.y = random (50, 400);
 		this.s = this.y * 0.25;
 		this.move = this.s * 0.015;
 		this.change = random (.1, .3);
@@ -9,7 +9,7 @@ class Cloud {
 
 	display() {
 		noStroke ();
-    	fill (255);
+    	fill (230);
     	ellipse (this.x, this.y, this.s, this.s * 0.8);
    		ellipse (this.x + (this.s * (2 * this.change)), this.y + (this.s * this.change), this.s, this.s * 0.8);
     	ellipse (this.x - (this.s * this.change), this.y + (this.s * this.change), this.s, this.s * 0.8);
