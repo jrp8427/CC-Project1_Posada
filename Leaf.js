@@ -1,27 +1,44 @@
 class Leaf {
-  constructor () {
-    this.x = random(0, 650);
-    this.y = random (-800, 0);
-    this.r = random (35, 45);
+  constructor (yTop, yBot) {
+    this.position = createVector(random(-300, 400), random(yTop, yBot));
+    this.velocity = createVector ();
+    this.gravity = createVector(0, .02);
+    this.wind = createVector (.05, 0);
+    this.r = random (30, 45);
     this.speed = this.r*0.05;
+    this.max = 4;
   }
 
-  display() {
-      strokeWeight(20);
-      fill (0);
-      ellipse (this.x, this.y, this.r*0.5, this.r);
-    }
+  display () {
+    strokeWeight(20);
+    fill (20, 64, 33);
+    let turn = this.velocity.heading(); //turn direction moving
+    push();
+    ellipse (this.position.x, this.position.y, this.r*.5, this.r);
+    pop();
+  }
 
-  fall() { //gravity
-    this.y += this.speed;
+  fall () {
+    this.velocity.add(this.gravity);
+    if (this.position.y < 0) {
+      //do nothing
+    } else if (this.position.y < 200) {
+      this.velocity.add(this.wind);
+    } else if (this.position.y < 400) {
+      this.velocity.sub(this.wind);
+    } else if (this.position.y < 600) {
+      this.velocity.add(this.wind);
+    } else if (this.position.y < 900) {
+      this.velocity.sub(this.wind);
+    }
+    this.position.add(this.velocity);
+    this.velocity.limit(max);
   }
 
   reset() {
-    if (this.y == height){
-      this.x = random(0, 650);
-      this.y = random (-800, 0);
-      this.r = random (35, 45);
-      this.speed = this.r*0.05;
+    if (this.position.y > height){
+      this.position.set(random(-300, 400), random(-200, 100));
+      this.velocity.set(0, 0);
     }
   }
 }
