@@ -2,4 +2,4 @@
 
 This is my project 1 which describes/illustrates an adjective.
  
-This project is made in P5.js.
+Click the mouse to switch between both scenes. 
