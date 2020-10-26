@@ -15,7 +15,7 @@ function dayField () {
 	let opac = 50; 
   	noFill();
   	for (let y = 710; y <= height; y += 1) { //field display
-  		fill (32, 90, 50, opac); //dark muted green
+  		fill (20, 64, 33, opac); //dark muted green
     	noStroke();
     	rect (0, y, width, 5);
     	opac += 1;
@@ -26,8 +26,8 @@ function sunset () {
 	let x = 0;
   	for (let i = 0; i <= height; i++) { //i = every x value
   		let y = 0; 
-  		let c1 = color (249, 65, 68); //red
-  		let c2 = color (242, 187, 5); //yellow 
+  		let c1 = color (231, 111, 81); //red
+  		let c2 = color (233, 196, 106); //yellow 
   		var inter = map (i, y, y + height, 0, 1); //inter = # b/w 0 and 1 based on y value
   		var c = lerpColor (c1, c2, inter); //make c a color gradient b/w c1 and c2
   		stroke (c);
